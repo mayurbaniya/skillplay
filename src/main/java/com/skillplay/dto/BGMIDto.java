@@ -1,23 +1,16 @@
-package com.skillplay.entity.games;
+package com.skillplay.dto;
 
-
-
-import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-
-@EqualsAndHashCode(callSuper = false)
 @Data
-@Entity
-@DiscriminatorValue("BGMI")
-public class BGMI extends Games {
-
+@NoArgsConstructor
+public class BGMIDto extends GameDto{
 
     private String matchType; // solo, duo, squad
     private String map;
     private String perspective; //tpp or fpp
     private String matchMode; // tdm, classic
     private int perKill;
-
 }

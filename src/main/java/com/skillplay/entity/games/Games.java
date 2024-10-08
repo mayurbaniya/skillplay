@@ -29,8 +29,7 @@ public abstract class Games {
     private Long id;
 
     private LocalDateTime datePlayed;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

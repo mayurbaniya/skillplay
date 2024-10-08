@@ -1,11 +1,17 @@
 package com.skillplay.controller.admin;
 
+import com.skillplay.dto.BGMIDto;
+import com.skillplay.dto.GameDto;
 import com.skillplay.entity.games.BGMI;
 import com.skillplay.entity.games.Games;
 import com.skillplay.service.games.GameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -26,9 +32,11 @@ public class GameController {
 
 
     @PostMapping
-    private Games saveGame(@RequestBody BGMI pobg){
+    private Object saveGame(@RequestBody BGMI pobg){
+    	return gameService.saveGame(pobg);
+       // log.info("controller: {}",savedGame);
 
-        return gameService.saveGame(pobg);
+
     }
 
 
