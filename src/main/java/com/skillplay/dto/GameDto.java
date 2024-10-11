@@ -9,8 +9,10 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class GameDto {
-    private Long id;
 
+    private Long id;
     private LocalDateTime datePlayed;
+
     private User user;
+
 }

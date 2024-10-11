@@ -1,7 +1,5 @@
 package com.skillplay.entity.games;
 
-
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
