@@ -25,5 +25,19 @@ public class MailTemplates {
          return emailService.sendEmail(sendTo, subject, body);
     }
 
+    public boolean sendForgotPasswordOtpMail(String otp, String sendTo) {
+
+        String subject = "Password Reset OTP for Your Account";
+        String body = "Dear User,\n\n" +
+                "We have received a request to reset your password. To proceed, please use the following One-Time Password (OTP): " + otp + ".\n\n" +
+                "If you did not request a password reset, please ignore this email. For your security, do not share this OTP with anyone.\n\n" +
+                "Thank you for your attention.\n\n" +
+                "Best regards,\n" +
+                "The GamingArena Team";
+
+        return emailService.sendEmail(sendTo, subject, body);
+    }
+
+
 
 }

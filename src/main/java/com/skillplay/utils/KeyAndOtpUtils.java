@@ -40,7 +40,6 @@ public class KeyAndOtpUtils {
         return new String(originalBytes, StandardCharsets.UTF_8);
     }
 
-
     public boolean isKeyValid(String encryptedKey) {
         long expirationTimeInMillis = 5 * 60 * 1000;
         try {
@@ -48,11 +47,9 @@ public class KeyAndOtpUtils {
             long timestamp = Long.parseLong(decryptedTimestamp);
             long currentTimeMillis = System.currentTimeMillis();
             return (currentTimeMillis - timestamp) <= expirationTimeInMillis;
-
         }catch (Exception ex){
             throw new RuntimeException(ex);
         }
-
     }
 
 

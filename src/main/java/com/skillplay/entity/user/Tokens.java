@@ -21,8 +21,6 @@ public class Tokens {
 
     private double miniToken;
 
-
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userID;

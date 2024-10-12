@@ -2,20 +2,21 @@ package com.skillplay.service;
 
 import com.skillplay.dto.UserRequestDto;
 import com.skillplay.dto.UserResponseDto;
+import com.skillplay.entity.user.Tokens;
 import com.skillplay.entity.user.User;
+import com.skillplay.repository.TokensRepository;
 import com.skillplay.repository.UserRepository;
 import com.skillplay.service.mail.MailTemplates;
-import com.skillplay.utils.GlobalResponse;
-import com.skillplay.utils.GlobalStorage;
-import com.skillplay.utils.KeyAndOtpUtils;
-import com.skillplay.utils.StatusEnum;
+import com.skillplay.utils.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -26,61 +27,45 @@ public class AuthService {
     private final ModelMapper modelMapper;
     private final KeyAndOtpUtils keyAndOtpUtils;
     private final MailTemplates mailTemplates;
-
-    public User saveUser(User user){
-    	user.setStatus(StatusEnum.ACTIVE.get());
-        return userRepository.save(user);
-
-    }
+    private final TokensRepository tokensRepository;
 
 
-    public GlobalResponse loginUser(String email, String password) {
-        User user = userRepository.findByEmail(email);
-        if (user != null) {
-            if(user.getStatus().equals(StatusEnum.BANNED.get())){
+    public GlobalResponse signInUser(String email, String password) {
+        User user = userRepository.findByEmailAndPassword(email, password);
+        try {
+            if(user != null ){
+                Optional<Tokens> tokensOptional = tokensRepository.findByUserID(user);
+
+                UserResponseDto response = modelMapper.map(user, UserResponseDto.class);
+                if(tokensOptional.isPresent()){
+                    Tokens tokens = tokensOptional.get();
+                    response.setTokens(tokens.getToken());
+                    response.setMiniTokens(tokens.getMiniToken());
+                }
+
+
                 return GlobalResponse.builder()
-                        .msg("You're banned, from this platform ")
-                        .status(StatusEnum.BANNED)
+                        .msg("Welcome to Skillplay "+ user.getUsername())
+                        .status(AppConstants.SUCCESS)
+                        .data(response)
+                        .build();
+            }else{
+                return GlobalResponse.builder()
+                        .msg("Invalid Password! Try again later")
+                        .status(AppConstants.INVALID_PASSWORD)
                         .build();
             }
-            if(user.getStatus().equals(StatusEnum.DELETED.get())){
-                return GlobalResponse.builder()
-                        .msg("Account Deleted")
-                        .status(StatusEnum.DELETED)
-                        .build();
-            }
-            if (user.getPassword().equals(password) && user.getStatus().equals(StatusEnum.ADMIN.get())){
-
-                return GlobalResponse.builder()
-                        .msg("ADMIN LOGGED IN " + user.getFirstName())
-                        .data(user)
-                        .status(StatusEnum.SUCCESS)
-                        .build();
-            }
-
-            if (user.getPassword().equals(password) && user.getStatus().equals(StatusEnum.ACTIVE.get())) {
-                return GlobalResponse.builder()
-                        .msg("Welcome back " + user.getFirstName())
-                        .data(user)
-                        .status(StatusEnum.SUCCESS)
-                        .build();
-            } else {
-                return GlobalResponse.builder()
-                        .msg("Wrong Password! please try again or click on 'Forgot Password' ")
-                        .status(StatusEnum.INVALID_PASSWORD)
-                        .build();
-            }
-        } else {
+        }catch (Exception e){
+            log.error("error occured while signing in user :{}",e.getMessage());
             return GlobalResponse.builder()
-                    .msg("User not found, please create a new Account")
-                    .status(StatusEnum.USER_NOT_FOUND)
+                    .msg("Error While Fetching User information, Try again later")
+                    .err(e.getMessage())
+                    .status(AppConstants.ERROR)
                     .build();
         }
     }
 
-
     public GlobalResponse createUser(UserRequestDto userRequestDto){
-
         String otp = keyAndOtpUtils.generateOtp(4);
         log.info("generated OTP:{}",otp);
         Map<String, UserRequestDto> otpUserMap = new HashMap<>();
@@ -90,41 +75,40 @@ public class AuthService {
             String uniqueKey = keyAndOtpUtils.generateUniqueKey();
             GlobalStorage.userMap.put(uniqueKey, otpUserMap);
             boolean sent = mailTemplates.sendOtpForAccountCreation(otp, userRequestDto.getEmail());
-
             if(sent){
+
                 Map<String, Object> response = new HashMap<>();
                 response.put("clientID", uniqueKey);
                 response.put("user", userRequestDto);
+
+                OtpRetryMechanism.incrementRetryCount(userRequestDto.getEmail(), AppConstants.PURPOSE_SIGN_UP_OTP);
+
                 return GlobalResponse.builder()
-                        .msg("OTP sent to , "+userRequestDto.getEmail())
+                        .msg("OTP sent to , "+userRequestDto.getEmail()+", Otp is valid for 5 minutes")
                         .data(response)
-                        .status(StatusEnum.SUCCESS)
+                        .status(AppConstants.SUCCESS)
                         .build();
             }else {
                 return GlobalResponse.builder()
                         .msg("Failed to send OTP, Something went wrong")
-                        .status(StatusEnum.FAILED)
+                        .status(AppConstants.FAILED)
                         .build();
             }
-
         }catch (Exception ex){
             log.error("Error while generating unique key or sending OTP: {}", ex.getMessage(), ex);
         }
-
         return GlobalResponse.builder()
                 .msg("Oops! Something went wrong! Try again later")
-                .status(StatusEnum.ERROR)
+                .status(AppConstants.ERROR)
                 .build();
     }
 
-
-    public GlobalResponse verifyAndSaveUser(String clientID, String otp){
-
+    public GlobalResponse verifyAndSaveUser(String clientID, String otp) {
 
         if(!GlobalStorage.userMap.containsKey(clientID)){
             return GlobalResponse.builder()
                     .msg("Invalid clientID! Try sending OTP again")
-                    .status(StatusEnum.INVALID_CLIENT_ID)
+                    .status(AppConstants.INVALID_CLIENT_ID)
                     .build();
         }
 
@@ -134,25 +118,171 @@ public class AuthService {
         if(!keyAndOtpUtils.isKeyValid(clientID)){
             return GlobalResponse.builder()
                     .msg("OTP Expired! Try again")
-                    .status(StatusEnum.OTP_EXPIRED)
+                    .status(AppConstants.OTP_EXPIRED)
                     .build();
         }
 
         if(otp.equals(otpFromMap)){
 
-                    User user = modelMapper.map(userData.get(otpFromMap), User.class);
-                    log.info("user : -> "+user);
+            User user = modelMapper.map(userData.get(otpFromMap), User.class);
+            log.info("user : -> "+user);
+
             User saved = userRepository.save(user);
             GlobalStorage.userMap.remove(clientID);
+
+            OtpRetryMechanism.clearRetryCount(saved.getEmail(), AppConstants.PURPOSE_SIGN_UP_OTP);
+
             return GlobalResponse.builder()
                 .msg("User created successfully!")
                 .data(modelMapper.map(saved, UserResponseDto.class))
-                .status(StatusEnum.SUCCESS)
+                .status(AppConstants.SUCCESS)
                 .build();
-        }else {
+        }else{
             return GlobalResponse.builder()
                     .msg("Invalid OTP!")
-                    .status(StatusEnum.INVALID_OTP)
+                    .status(AppConstants.INVALID_OTP)
+                    .build();
+        }
+
+    }
+
+
+    public GlobalResponse handleResetPasswordRequest(String email){
+
+        try {
+            String uniqueKey = keyAndOtpUtils.generateUniqueKey();
+            String otp = keyAndOtpUtils.generateOtp(4);
+
+            Map<String,String> emailmap = new HashMap<>();
+            emailmap.put(email, otp);
+            GlobalStorage.otpMap.put(uniqueKey, emailmap);
+
+            if(mailTemplates.sendForgotPasswordOtpMail(otp, email)){
+
+                Map<String, Object> response = new HashMap<>();
+                response.put("clientID", uniqueKey);
+
+                OtpRetryMechanism.incrementRetryCount(email, AppConstants.PURPOSE_FORGOT_PASSWORD_OTP);
+
+                return GlobalResponse.builder()
+                        .msg("Otp sent to "+ email +", Otp is valid for 5 minutes")
+                        .data(response)
+                        .status(AppConstants.SUCCESS)
+                        .build();
+            }else{
+                return GlobalResponse.builder()
+                        .msg("Failed to send the reset password mail, Try again after sometime")
+                        .status(AppConstants.FAILED)
+                        .build();
+            }
+
+        }catch(Exception e){
+            log.error("ERROR OCCURED WHILE SENDING RESET PASSWORD MAIL :{}",e);
+                    return GlobalResponse.builder()
+                            .msg("Something went wrong! Try again later")
+                            .status(AppConstants.ERROR)
+                            .build();
+        }
+    }
+
+    public GlobalResponse verifyOtpAndAllowUserToResetPassword(String clientID, String otp) {
+
+        if (!GlobalStorage.otpMap.containsKey(clientID)) {
+            return GlobalResponse.builder()
+                    .msg("Invalid clientID! Try sending OTP again")
+                    .status(AppConstants.INVALID_CLIENT_ID)
+                    .build();
+        }
+
+        if (!keyAndOtpUtils.isKeyValid(clientID)) {
+            return GlobalResponse.builder()
+                    .msg("OTP Expired! Try again")
+                    .status(AppConstants.OTP_EXPIRED)
+                    .build();
+        }
+
+        Map<String, String> otpMap = GlobalStorage.otpMap.get(clientID);
+
+        String storedOtp = otpMap.values().iterator().next();
+        String email = otpMap.keySet().iterator().next();
+
+        if (otp.equals(storedOtp)) {
+            try {
+                String newClientID = keyAndOtpUtils.generateUniqueKey();
+
+                Map<String, String> newOtpMap = new HashMap<>();
+                newOtpMap.put("email", email);
+
+                GlobalStorage.otpMap.put(newClientID, newOtpMap);
+                GlobalStorage.otpMap.remove(clientID);
+
+                Map<String, Object> response = new HashMap<>();
+                response.put("clientID", newClientID);
+
+                // Return a success response with the new client ID
+                return GlobalResponse.builder()
+                        .msg("Otp Verified! you can reset password now")
+                        .status(AppConstants.SUCCESS)
+                        .data(response)
+                        .build();
+
+            } catch (Exception e) {
+                log.error("ERROR OCCURRED WHILE GENERATING NEW CLIENT ID FOR RESET PASSWORD: {}", e);
+
+                return GlobalResponse.builder()
+                        .msg("Something went wrong! Try again later")
+                        .status(AppConstants.ERROR)
+                        .build();
+            }
+        } else {
+            return GlobalResponse.builder()
+                    .msg("Invalid OTP!")
+                    .status(AppConstants.INVALID_OTP)
+                    .build();
+        }
+    }
+
+
+    public GlobalResponse saveNewPassword(String clientID, String password){
+
+        if(!GlobalStorage.otpMap.containsKey(clientID)){
+
+            return GlobalResponse.builder()
+                    .msg("Invalid clientID! Try sending OTP again")
+                    .status(AppConstants.INVALID_CLIENT_ID)
+                    .build();
+        }
+
+        if(!keyAndOtpUtils.isKeyValid(clientID)){
+            return GlobalResponse.builder()
+                    .msg("OTP Expired! Try again")
+                    .status(AppConstants.OTP_EXPIRED)
+                    .build();
+        }
+
+        String email = GlobalStorage.otpMap.get(clientID).get("email");
+
+        try {
+
+            User userByEmail = userRepository.findByEmail(email);
+            userByEmail.setPassword(password);
+            userByEmail.setModified(new Date());
+            userRepository.save(userByEmail);
+
+            OtpRetryMechanism.clearRetryCount(email, AppConstants.PURPOSE_FORGOT_PASSWORD_OTP);
+
+            GlobalStorage.otpMap.remove(clientID);
+            return GlobalResponse.builder()
+                    .msg("Password Changed")
+                    .status(AppConstants.SUCCESS)
+                    .build();
+
+        }catch (Exception e){
+
+            log.error("ERROR OCCURED WHILE SAVING USER  :{}",e);
+            return GlobalResponse.builder()
+                    .msg("Something went wrong! Try again later")
+                    .status(AppConstants.ERROR)
                     .build();
         }
 

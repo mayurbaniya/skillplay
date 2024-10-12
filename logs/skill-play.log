@@ -1,0 +1,216 @@
+2024-10-13T00:42:10.936+05:30 DEBUG 18304 --- [Skillplay] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 17 mappings in 'requestMappingHandlerMapping'
+2024-10-13T00:42:11.063+05:30 DEBUG 18304 --- [Skillplay] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-10-13T00:42:11.115+05:30 DEBUG 18304 --- [Skillplay] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-10-13T00:42:11.169+05:30 DEBUG 18304 --- [Skillplay] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-10-13T00:42:41.219+05:30  INFO 18320 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Starting SkillplayApplication using Java 17.0.10 with PID 18320 (D:\projects\skillplay new\skillplay\skillplay\target\classes started by lenovo in D:\projects\skillplay new\skillplay\skillplay)
+2024-10-13T00:42:41.222+05:30  INFO 18320 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-13T00:42:41.292+05:30  INFO 18320 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-13T00:42:41.292+05:30  INFO 18320 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-13T00:42:42.297+05:30  INFO 18320 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-13T00:42:42.392+05:30  INFO 18320 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84 ms. Found 4 JPA repository interfaces.
+2024-10-13T00:42:43.185+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2024-10-13T00:42:43.204+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-13T00:42:43.205+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-13T00:42:43.277+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring embedded WebApplicationContext
+2024-10-13T00:42:43.277+05:30  INFO 18320 --- [Skillplay] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1983 ms
+2024-10-13T00:42:43.514+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-13T00:42:43.575+05:30  INFO 18320 --- [Skillplay] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2024-10-13T00:42:43.615+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-13T00:42:43.912+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-13T00:42:43.941+05:30  INFO 18320 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-13T00:42:44.299+05:30  INFO 18320 --- [Skillplay] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2f3df0f8
+2024-10-13T00:42:44.303+05:30  INFO 18320 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-13T00:42:44.600+05:30  WARN 18320 --- [Skillplay] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.skillplay.entity.games.Games] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-13T00:42:45.758+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-13T00:42:46.002+05:30  INFO 18320 --- [Skillplay] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T00:42:46.678+05:30  WARN 18320 --- [Skillplay] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-13T00:42:47.256+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-13T00:42:47.310+05:30  INFO 18320 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/skill-play'
+2024-10-13T00:42:47.338+05:30  INFO 18320 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Started SkillplayApplication in 6.596 seconds (process running for 7.203)
+2024-10-13T00:43:19.663+05:30  INFO 18320 --- [Skillplay] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T00:43:19.667+05:30  INFO 18320 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-13T00:43:19.675+05:30  INFO 18320 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-13T00:43:21.780+05:30  INFO 16380 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Starting SkillplayApplication using Java 17.0.10 with PID 16380 (D:\projects\skillplay new\skillplay\skillplay\target\classes started by lenovo in D:\projects\skillplay new\skillplay\skillplay)
+2024-10-13T00:43:21.783+05:30  INFO 16380 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-13T00:43:21.852+05:30  INFO 16380 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-13T00:43:21.852+05:30  INFO 16380 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-13T00:43:22.876+05:30  INFO 16380 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-13T00:43:22.965+05:30  INFO 16380 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 4 JPA repository interfaces.
+2024-10-13T00:43:23.892+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2024-10-13T00:43:23.907+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-13T00:43:23.909+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-13T00:43:23.974+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring embedded WebApplicationContext
+2024-10-13T00:43:23.975+05:30  INFO 16380 --- [Skillplay] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2122 ms
+2024-10-13T00:43:24.230+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-13T00:43:24.311+05:30  INFO 16380 --- [Skillplay] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2024-10-13T00:43:24.350+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-13T00:43:24.668+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-13T00:43:24.698+05:30  INFO 16380 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-13T00:43:25.064+05:30  INFO 16380 --- [Skillplay] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7292400e
+2024-10-13T00:43:25.065+05:30  INFO 16380 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-13T00:43:25.338+05:30  WARN 16380 --- [Skillplay] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.skillplay.entity.games.Games] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-13T00:43:26.490+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-13T00:43:26.745+05:30  INFO 16380 --- [Skillplay] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T00:43:27.425+05:30  WARN 16380 --- [Skillplay] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-13T00:43:27.979+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-13T00:43:28.026+05:30  INFO 16380 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/skill-play'
+2024-10-13T00:43:28.051+05:30  INFO 16380 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Started SkillplayApplication in 6.78 seconds (process running for 7.375)
+2024-10-13T01:34:19.431+05:30  INFO 16380 --- [Skillplay] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:34:19.437+05:30  INFO 16380 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-13T01:34:19.449+05:30  INFO 16380 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-13T01:34:25.165+05:30  INFO 14724 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Starting SkillplayApplication using Java 17.0.10 with PID 14724 (D:\projects\skillplay new\skillplay\skillplay\target\classes started by lenovo in D:\projects\skillplay new\skillplay\skillplay)
+2024-10-13T01:34:25.168+05:30  INFO 14724 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-13T01:34:25.226+05:30  INFO 14724 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-13T01:34:25.226+05:30  INFO 14724 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-13T01:34:26.176+05:30  INFO 14724 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-13T01:34:26.243+05:30  INFO 14724 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 5 JPA repository interfaces.
+2024-10-13T01:34:26.920+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2024-10-13T01:34:26.934+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-13T01:34:26.935+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-13T01:34:26.989+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring embedded WebApplicationContext
+2024-10-13T01:34:26.989+05:30  INFO 14724 --- [Skillplay] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1763 ms
+2024-10-13T01:34:27.170+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-13T01:34:27.252+05:30  INFO 14724 --- [Skillplay] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2024-10-13T01:34:27.289+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-13T01:34:27.533+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-13T01:34:27.564+05:30  INFO 14724 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-13T01:34:27.881+05:30  INFO 14724 --- [Skillplay] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1cff266d
+2024-10-13T01:34:27.883+05:30  INFO 14724 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-13T01:34:28.054+05:30  WARN 14724 --- [Skillplay] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.skillplay.entity.games.Games] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-13T01:34:28.983+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-13T01:34:29.237+05:30  INFO 14724 --- [Skillplay] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:34:29.820+05:30  WARN 14724 --- [Skillplay] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-13T01:34:30.333+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-13T01:34:30.366+05:30  INFO 14724 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/skill-play'
+2024-10-13T01:34:30.383+05:30  INFO 14724 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Started SkillplayApplication in 5.67 seconds (process running for 6.476)
+2024-10-13T01:34:43.404+05:30  INFO 14724 --- [Skillplay] [http-nio-8084-exec-2] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-13T01:34:43.404+05:30  INFO 14724 --- [Skillplay] [http-nio-8084-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-13T01:34:43.405+05:30  INFO 14724 --- [Skillplay] [http-nio-8084-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-10-13T01:34:44.439+05:30  INFO 14724 --- [Skillplay] [http-nio-8084-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 444 ms
+2024-10-13T01:36:53.284+05:30  INFO 14724 --- [Skillplay] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:36:53.289+05:30  INFO 14724 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-13T01:36:53.297+05:30  INFO 14724 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-13T01:36:56.797+05:30  INFO 2748 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Starting SkillplayApplication using Java 17.0.10 with PID 2748 (D:\projects\skillplay new\skillplay\skillplay\target\classes started by lenovo in D:\projects\skillplay new\skillplay\skillplay)
+2024-10-13T01:36:56.800+05:30  INFO 2748 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-13T01:36:56.870+05:30  INFO 2748 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-13T01:36:56.870+05:30  INFO 2748 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-13T01:36:57.786+05:30  INFO 2748 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-13T01:36:57.858+05:30  INFO 2748 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 5 JPA repository interfaces.
+2024-10-13T01:36:58.620+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2024-10-13T01:36:58.654+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-13T01:36:58.655+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-13T01:36:58.800+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring embedded WebApplicationContext
+2024-10-13T01:36:58.802+05:30  INFO 2748 --- [Skillplay] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1931 ms
+2024-10-13T01:36:59.144+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-13T01:36:59.223+05:30  INFO 2748 --- [Skillplay] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2024-10-13T01:36:59.301+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-13T01:36:59.711+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-13T01:36:59.738+05:30  INFO 2748 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-13T01:37:00.026+05:30  INFO 2748 --- [Skillplay] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fcd2968
+2024-10-13T01:37:00.029+05:30  INFO 2748 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-13T01:37:00.185+05:30  WARN 2748 --- [Skillplay] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.skillplay.entity.games.Games] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-13T01:37:00.952+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-13T01:37:01.085+05:30  INFO 2748 --- [Skillplay] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:37:01.694+05:30  WARN 2748 --- [Skillplay] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-13T01:37:02.319+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-13T01:37:02.374+05:30  INFO 2748 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/skill-play'
+2024-10-13T01:37:02.397+05:30  INFO 2748 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Started SkillplayApplication in 6.062 seconds (process running for 6.582)
+2024-10-13T01:37:08.329+05:30  INFO 2748 --- [Skillplay] [http-nio-8084-exec-2] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-13T01:37:08.329+05:30  INFO 2748 --- [Skillplay] [http-nio-8084-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-13T01:37:08.332+05:30  INFO 2748 --- [Skillplay] [http-nio-8084-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-10-13T01:37:09.003+05:30  INFO 2748 --- [Skillplay] [http-nio-8084-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 422 ms
+2024-10-13T01:39:42.297+05:30  WARN 2748 --- [Skillplay] [http-nio-8084-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2024-10-13T01:42:59.569+05:30  INFO 2748 --- [Skillplay] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:42:59.572+05:30  INFO 2748 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-13T01:42:59.581+05:30  INFO 2748 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-13T01:43:03.865+05:30  INFO 15500 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Starting SkillplayApplication using Java 17.0.10 with PID 15500 (D:\projects\skillplay new\skillplay\skillplay\target\classes started by lenovo in D:\projects\skillplay new\skillplay\skillplay)
+2024-10-13T01:43:03.868+05:30  INFO 15500 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-13T01:43:03.922+05:30  INFO 15500 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-13T01:43:03.922+05:30  INFO 15500 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-13T01:43:04.891+05:30  INFO 15500 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-13T01:43:04.972+05:30  INFO 15500 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 5 JPA repository interfaces.
+2024-10-13T01:43:05.738+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2024-10-13T01:43:05.751+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-13T01:43:05.751+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-13T01:43:05.826+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring embedded WebApplicationContext
+2024-10-13T01:43:05.826+05:30  INFO 15500 --- [Skillplay] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1904 ms
+2024-10-13T01:43:06.043+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-13T01:43:06.135+05:30  INFO 15500 --- [Skillplay] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2024-10-13T01:43:06.198+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-13T01:43:06.537+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-13T01:43:06.572+05:30  INFO 15500 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-13T01:43:06.934+05:30  INFO 15500 --- [Skillplay] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f823db
+2024-10-13T01:43:06.937+05:30  INFO 15500 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-13T01:43:07.176+05:30  WARN 15500 --- [Skillplay] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.skillplay.entity.games.Games] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-13T01:43:08.385+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-13T01:43:08.525+05:30  INFO 15500 --- [Skillplay] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:43:09.969+05:30  WARN 15500 --- [Skillplay] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-13T01:43:10.844+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-13T01:43:10.906+05:30  INFO 15500 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/skill-play'
+2024-10-13T01:43:10.935+05:30  INFO 15500 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Started SkillplayApplication in 7.453 seconds (process running for 8.672)
+2024-10-13T01:44:26.981+05:30  INFO 15500 --- [Skillplay] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:44:26.984+05:30  INFO 15500 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-13T01:44:26.995+05:30  INFO 15500 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-13T01:44:30.804+05:30  INFO 13192 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Starting SkillplayApplication using Java 17.0.10 with PID 13192 (D:\projects\skillplay new\skillplay\skillplay\target\classes started by lenovo in D:\projects\skillplay new\skillplay\skillplay)
+2024-10-13T01:44:30.806+05:30  INFO 13192 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-13T01:44:30.881+05:30  INFO 13192 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-13T01:44:30.881+05:30  INFO 13192 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-13T01:44:31.890+05:30  INFO 13192 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-13T01:44:31.950+05:30  INFO 13192 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 5 JPA repository interfaces.
+2024-10-13T01:44:32.645+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2024-10-13T01:44:32.664+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-13T01:44:32.665+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-13T01:44:32.727+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring embedded WebApplicationContext
+2024-10-13T01:44:32.728+05:30  INFO 13192 --- [Skillplay] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1846 ms
+2024-10-13T01:44:32.915+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-13T01:44:32.970+05:30  INFO 13192 --- [Skillplay] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2024-10-13T01:44:33.002+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-13T01:44:33.222+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-13T01:44:33.250+05:30  INFO 13192 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-13T01:44:33.499+05:30  INFO 13192 --- [Skillplay] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@640927b5
+2024-10-13T01:44:33.501+05:30  INFO 13192 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-13T01:44:33.743+05:30  WARN 13192 --- [Skillplay] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.skillplay.entity.games.Games] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-13T01:44:34.617+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-13T01:44:34.735+05:30  INFO 13192 --- [Skillplay] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:44:35.356+05:30  WARN 13192 --- [Skillplay] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-13T01:44:35.828+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-13T01:44:35.869+05:30  INFO 13192 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/skill-play'
+2024-10-13T01:44:35.897+05:30  INFO 13192 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Started SkillplayApplication in 5.54 seconds (process running for 6.09)
+2024-10-13T01:44:45.829+05:30  INFO 13192 --- [Skillplay] [http-nio-8084-exec-1] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-13T01:44:45.829+05:30  INFO 13192 --- [Skillplay] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-13T01:44:45.831+05:30  INFO 13192 --- [Skillplay] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-10-13T01:45:48.026+05:30  INFO 13192 --- [Skillplay] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T01:45:48.028+05:30  INFO 13192 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-13T01:45:48.034+05:30  INFO 13192 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-13T02:49:28.796+05:30  INFO 12804 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Starting SkillplayApplication using Java 17.0.10 with PID 12804 (D:\projects\skillplay new\skillplay\skillplay\target\classes started by lenovo in D:\projects\skillplay new\skillplay\skillplay)
+2024-10-13T02:49:28.799+05:30  INFO 12804 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-10-13T02:49:28.860+05:30  INFO 12804 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-13T02:49:28.860+05:30  INFO 12804 --- [Skillplay] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-13T02:49:29.837+05:30  INFO 12804 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-13T02:49:29.902+05:30  INFO 12804 --- [Skillplay] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 5 JPA repository interfaces.
+2024-10-13T02:49:30.561+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8084 (http)
+2024-10-13T02:49:30.573+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-13T02:49:30.574+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-13T02:49:30.631+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring embedded WebApplicationContext
+2024-10-13T02:49:30.631+05:30  INFO 12804 --- [Skillplay] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1771 ms
+2024-10-13T02:49:30.843+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-13T02:49:30.923+05:30  INFO 12804 --- [Skillplay] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2024-10-13T02:49:30.960+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-13T02:49:31.211+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-13T02:49:31.239+05:30  INFO 12804 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-13T02:49:31.569+05:30  INFO 12804 --- [Skillplay] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a99ab46
+2024-10-13T02:49:31.571+05:30  INFO 12804 --- [Skillplay] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-13T02:49:31.825+05:30  WARN 12804 --- [Skillplay] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.skillplay.entity.games.Games] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-13T02:49:32.678+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-13T02:49:32.816+05:30  INFO 12804 --- [Skillplay] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T02:49:33.412+05:30  WARN 12804 --- [Skillplay] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-13T02:49:33.926+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-13T02:49:33.962+05:30  INFO 12804 --- [Skillplay] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/skill-play'
+2024-10-13T02:49:33.979+05:30  INFO 12804 --- [Skillplay] [restartedMain] com.skillplay.SkillplayApplication       : Started SkillplayApplication in 5.649 seconds (process running for 6.455)
+2024-10-13T02:49:41.775+05:30  INFO 12804 --- [Skillplay] [http-nio-8084-exec-1] o.a.c.c.C.[.[localhost].[/skill-play]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-13T02:49:41.775+05:30  INFO 12804 --- [Skillplay] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-10-13T02:49:41.776+05:30  INFO 12804 --- [Skillplay] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-10-13T02:49:42.660+05:30  INFO 12804 --- [Skillplay] [http-nio-8084-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 424 ms
+2024-10-13T02:59:14.793+05:30  INFO 12804 --- [Skillplay] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-13T02:59:14.796+05:30  INFO 12804 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-13T02:59:14.801+05:30  INFO 12804 --- [Skillplay] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

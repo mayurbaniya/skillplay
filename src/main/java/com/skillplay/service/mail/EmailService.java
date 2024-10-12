@@ -1,6 +1,5 @@
 package com.skillplay.service.mail;
 
-import com.skillplay.utils.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;

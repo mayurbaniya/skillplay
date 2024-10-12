@@ -1,5 +1,6 @@
 package com.skillplay.dto;
 
+import com.skillplay.entity.user.Tokens;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,5 +18,7 @@ public class UserResponseDto {
     private String status;
     private Date created;
     private Date modified;
+    private double tokens;
+    private double miniTokens;
 
 }

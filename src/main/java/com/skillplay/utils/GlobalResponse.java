@@ -14,5 +14,5 @@ public class GlobalResponse {
     private String msg;
     private Object data;
     private String err;
-    private StatusEnum status;
+    private AppConstants status;
 }
