@@ -27,8 +27,8 @@ public class BgmiController {
         return ResponseEntity.ok(bgmiService.getMatchById(matchID));
     }
 
-    @GetMapping("get-all/{pageNo}/{pageSize}")
-    private ResponseEntity<GlobalResponse> getAllMatches(@PathVariable("pageNo") int pageNo, @PathVariable("pageSize") int pageSize){
+    @GetMapping("get-all")
+    private ResponseEntity<GlobalResponse> getAllMatches(@RequestHeader("pageNo") int pageNo, @RequestHeader("pageSize") int pageSize){
         return ResponseEntity.ok(bgmiService.getAllMatches(pageNo, pageSize));
     }
 
