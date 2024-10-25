@@ -21,7 +21,6 @@ import java.util.Optional;
 public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
-    private final BgmiRepository bgmiRepository;
 
     @Override
     public List<Games> getAllGames() {
