@@ -3,6 +3,7 @@ package com.skillplay.controller;
 
 import com.skillplay.dto.UserRequestDto;
 import com.skillplay.service.AuthService;
+import com.skillplay.utils.Constants;
 import com.skillplay.utils.GlobalResponse;
 import com.skillplay.utils.AppConstants;
 import com.skillplay.utils.OtpRetryMechanism;
@@ -23,16 +24,16 @@ public class AuthController {
 
 
     @GetMapping("test")
-    private String saveUser(){
+    private GlobalResponse saveUser(){
         log.info("test method called");
-        return "Test Success";
+        return GlobalResponse.builder().msg("test success..").status(AppConstants.SUCCESS).build();
     }
 
     @PostMapping({"sign-up","resend-otp"})
     private ResponseEntity<GlobalResponse> createUser(@RequestBody UserRequestDto userRequestDto ){
 
         if(!OtpRetryMechanism.isRetryAvailable(userRequestDto.getEmail(), AppConstants.PURPOSE_SIGN_UP_OTP))
-            return ResponseEntity.ok(GlobalResponse.builder().msg("You've reached your limit, please try again tomorrow").status(AppConstants.LIMIT_EXCEEDED).build());
+            return ResponseEntity.ok(GlobalResponse.builder().msg(Constants.otpLimitReachedWarning).status(AppConstants.LIMIT_EXCEEDED).build());
 
         if(userValidator.checkUserExistByEmail(userRequestDto.getEmail()))
             return ResponseEntity.ok(GlobalResponse.builder().msg("Email Address is already in use").status(AppConstants.EMAIL_TAKEN).build());
@@ -59,7 +60,7 @@ public class AuthController {
     @PostMapping({"reset-password-request", "resend-password-otp"})
     private ResponseEntity<GlobalResponse> handleResetPasswordRequest(@RequestParam("email") String email){
         if(!OtpRetryMechanism.isRetryAvailable(email, AppConstants.PURPOSE_FORGOT_PASSWORD_OTP))
-            return ResponseEntity.ok(GlobalResponse.builder().msg("You've reached your limit, please try again tomorrow").status(AppConstants.LIMIT_EXCEEDED).build());
+            return ResponseEntity.ok(GlobalResponse.builder().msg(Constants.otpLimitReachedWarning).status(AppConstants.LIMIT_EXCEEDED).build());
 
         if(!userValidator.checkUserExistByEmail(email))
             return ResponseEntity.ok(GlobalResponse.builder().msg("Oops! Account not found. Try creating a new account").status(AppConstants.USER_NOT_FOUND).build());
