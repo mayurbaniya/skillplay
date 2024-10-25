@@ -14,6 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -33,13 +36,22 @@ public class BgmiService {
 
     public GlobalResponse getAllMatches(int page, int size) {
 
+        page = page <=0 ? 0 :page-1;
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "datePlayed"));
         Page<BGMI> matchesPage = bgmiRepository.findAll(pageable);
+
+        Map<String , Object> response =  new LinkedHashMap<>();
+        response.put("content",matchesPage.getContent());
+        response.put("recordCount",matchesPage.getTotalElements());
+        response.put("pageNumber",matchesPage.getPageable().getPageNumber()+1);
+        response.put("totalPages",matchesPage.getTotalPages());
+        response.put("totalRecords",matchesPage.getNumberOfElements());
+        response.put("IsLast",matchesPage.isLast());
 
         return GlobalResponse.builder()
                 .msg("All matches list")
                 .status(AppConstants.SUCCESS)
-                .data(matchesPage.getContent())
+                .data(response)
                 .build();
     }
 
