@@ -21,7 +21,6 @@ import java.util.Optional;
 public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
-    private final BgmiRepository bgmiRepository;
 
     @Override
     public List<Games> getAllGames() {
@@ -30,7 +29,6 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Games saveGame(BGMI games) {
-    	
     	Games  savedGame = gameRepository.save(games);
     
     	

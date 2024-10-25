@@ -1,5 +1,6 @@
 package com.skillplay.entity.user;
 
+import com.skillplay.utils.AppConstants;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class User {
     private String username;
     private String email;
 
-    private String status;   // 1 active, 0 deleted, 99 banned // 2 admin
+    private String status = AppConstants.ACTIVE.get();   // 1 active, 0 deleted, 99 banned // 2 admin
 
     private String password;
     @Temporal(TemporalType.DATE)
