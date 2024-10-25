@@ -1,7 +1,5 @@
 package com.skillplay.controller.admin;
 
-import com.skillplay.dto.BGMIDto;
-import com.skillplay.dto.GameDto;
 import com.skillplay.entity.games.BGMI;
 import com.skillplay.entity.games.Games;
 import com.skillplay.service.games.GameService;
@@ -35,8 +33,6 @@ public class GameController {
     private Object saveGame(@RequestBody BGMI pobg){
     	return gameService.saveGame(pobg);
        // log.info("controller: {}",savedGame);
-
-
     }
 
 
