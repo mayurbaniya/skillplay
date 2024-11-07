@@ -51,9 +51,6 @@ public class AuthController {
 
     @PostMapping("sign-in")
     private ResponseEntity<GlobalResponse> signInUser(@RequestParam("email") String email, @RequestParam("password") String password){
-        if(!userValidator.checkUserExistByEmail(email))
-            return ResponseEntity.ok(GlobalResponse.builder().msg("Oops! Account not found. Try creating a new account").status(AppConstants.USER_NOT_FOUND).build());
-
         return ResponseEntity.ok(authService.signInUser(email, password));
     }
 
