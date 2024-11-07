@@ -1,40 +1,32 @@
 package com.skillplay.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests((req) -> req
-//                .requestMatchers("/user/auth/", "/skill-play/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**")
-//                .permitAll() // Allow these endpoints
-//                .anyRequest().authenticated() // Secure other endpoints
-//        );
-//
-//        // Disable CSRF protection (optional, but useful for non-browser clients)
-//        http.csrf(AbstractHttpConfigurer::disable);
-//
-//        return http.build();
-//    }
-
+    private final JWTAuthenticationEntryPoint point;
+    private final JWTAuthenticationFilter filter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.authorizeHttpRequests((req)->req.requestMatchers("/user/auth/**", "/v3/api-docs/**","/swagger-ui/**", "/swagger-resources/**")
-                .permitAll().anyRequest().authenticated());
+
+        http.authorizeHttpRequests((req) -> req.requestMatchers("/user/auth/**", "/v3/api-docs/**","/swagger-ui/**", "/swagger-resources/**")
+                .permitAll().anyRequest().authenticated())
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }

@@ -32,13 +32,14 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder;
 
 
-    public GlobalResponse signInUser(String email, String password) {
+    public GlobalResponse signInUser(String email, String password, String token) {
         try {
-            User user = userRepository.findByEmail(email);
+            User user = userRepository.findByEmailOrUsername(email, email);
             if (user != null && passwordEncoder.matches(password, user.getPassword())) {
                 Optional<Tokens> tokensOptional = tokensRepository.findByUserID(user);
 
                 UserResponseDto response = modelMapper.map(user, UserResponseDto.class);
+                response.setJwtToken(token);
                 if (tokensOptional.isPresent()) {
                     Tokens tokens = tokensOptional.get();
                     response.setTokens(tokens.getToken());

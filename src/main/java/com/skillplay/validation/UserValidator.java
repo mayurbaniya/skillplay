@@ -19,4 +19,15 @@ public class UserValidator {
     public boolean checkUserExistByUsername(String username){
         return Optional.ofNullable(userRepository.findByUsername(username)).isPresent();
     }
+
+    public boolean isValidUsername(String username) {
+        String regex = "^[a-zA-Z._]+$";
+        return username.matches(regex);
+    }
+
+    public boolean isValidEmail(String email) {
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        return email.matches(regex);
+    }
+
 }
