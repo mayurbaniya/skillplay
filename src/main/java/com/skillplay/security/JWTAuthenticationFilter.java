@@ -34,7 +34,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
             token = requestHeader.substring(7);
-
             try {
                 username = jwtHelper.extractUsername(token);
             } catch (IllegalArgumentException e) {
@@ -62,4 +61,5 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
 }

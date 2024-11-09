@@ -12,8 +12,7 @@ import com.skillplay.validation.UserValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,9 +41,18 @@ public class AuthController {
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-        } catch (Exception e) {
+        } catch (LockedException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Account is locked").status(AppConstants.ACCOUNT_LOCKED).build());
+        } catch (DisabledException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Account is disabled").status(AppConstants.ACCOUNT_DISABLED).build());
+        } catch (CredentialsExpiredException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Credentials have expired").status(AppConstants.CREDENTIALS_EXPIRED).build());
+        } catch (AccountExpiredException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Account has expired").status(AppConstants.ACCOUNT_EXPIRED).build());
+        } catch (BadCredentialsException e) {
             return ResponseEntity.ok(GlobalResponse.builder().msg("Invalid email or password").status(AppConstants.INVALID_CREDENTIALS).build());
         }
+
 
         final UserDetails userDetails = userDetailService.loadUserByUsername(email);
         String token = jwtHelper.generateToken(userDetails);

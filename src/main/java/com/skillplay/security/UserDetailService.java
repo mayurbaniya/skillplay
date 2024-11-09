@@ -28,16 +28,7 @@ public class UserDetailService implements UserDetailsService {
                 throw new UsernameNotFoundException("User not found with email: " + username);
             }
 
-            return new CustomUserDetails(
-                    user.getId(),
-                    user.getFirstName(),
-                    user.getLastName(),
-                    user.getUsername(),
-                    user.getEmail(),
-                    user.getStatus(),
-                    user.getPassword(),
-                    new ArrayList<>()
-            );
+            return new CustomUserDetails(user);
 
         } catch (Exception e) {
             log.error("Error occurred while loading user by email: {}", username, e);

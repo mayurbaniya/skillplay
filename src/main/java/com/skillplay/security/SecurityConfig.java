@@ -21,9 +21,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-
-        http.authorizeHttpRequests((req) -> req.requestMatchers("/user/auth/**", "/v3/api-docs/**","/swagger-ui/**", "/swagger-resources/**")
-                .permitAll().anyRequest().authenticated())
+        http.authorizeHttpRequests((req) -> req
+                .requestMatchers("/user/auth/**", "/v3/api-docs/**","/swagger-ui/**", "/swagger-resources/**").permitAll()
+                .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/user/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
