@@ -35,6 +35,7 @@ public class BgmiService {
 
 
     public GlobalResponse getAllMatches(int page, int size) {
+
         page = page <=0 ? 0 :page-1;
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "datePlayed"));
         Page<BGMI> matchesPage = bgmiRepository.findAll(pageable);

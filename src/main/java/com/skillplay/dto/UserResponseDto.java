@@ -20,5 +20,6 @@ public class UserResponseDto {
     private Date modified;
     private double tokens;
     private double miniTokens;
+    private String jwtToken;
 
 }

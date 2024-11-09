@@ -11,6 +11,7 @@ import com.skillplay.utils.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,35 +29,36 @@ public class AuthService {
     private final KeyAndOtpUtils keyAndOtpUtils;
     private final MailTemplates mailTemplates;
     private final TokensRepository tokensRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
-    public GlobalResponse signInUser(String email, String password) {
-        User user = userRepository.findByEmailAndPassword(email, password);
+    public GlobalResponse signInUser(String email, String password, String token) {
         try {
-            if(user != null ){
+            User user = userRepository.findByEmailOrUsername(email, email);
+            if (user != null && passwordEncoder.matches(password, user.getPassword())) {
                 Optional<Tokens> tokensOptional = tokensRepository.findByUserID(user);
 
                 UserResponseDto response = modelMapper.map(user, UserResponseDto.class);
-                if(tokensOptional.isPresent()){
+                response.setJwtToken(token);
+                if (tokensOptional.isPresent()) {
                     Tokens tokens = tokensOptional.get();
                     response.setTokens(tokens.getToken());
                     response.setMiniTokens(tokens.getMiniToken());
                 }
 
-
                 return GlobalResponse.builder()
-                        .msg("Welcome to Skillplay "+ user.getUsername())
+                        .msg("Welcome to Skillplay " + user.getUsername())
                         .status(AppConstants.SUCCESS)
                         .data(response)
                         .build();
-            }else{
+            } else {
                 return GlobalResponse.builder()
-                        .msg("Invalid Password! Try again later")
+                        .msg("Invalid Email or Password! Try again later")
                         .status(AppConstants.INVALID_PASSWORD)
                         .build();
             }
-        }catch (Exception e){
-            log.error("error occured while signing in user :{}",e.getMessage());
+        } catch (Exception e) {
+            log.error("error occurred while signing in user :{}", e.getMessage());
             return GlobalResponse.builder()
                     .msg("Error While Fetching User information, Try again later")
                     .err(e.getMessage())
@@ -125,6 +127,7 @@ public class AuthService {
         if(otp.equals(otpFromMap)){
 
             User user = modelMapper.map(userData.get(otpFromMap), User.class);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             log.info("user : -> "+user);
 
             User saved = userRepository.save(user);

@@ -1,7 +1,8 @@
 package com.skillplay.controller;
 
-
 import com.skillplay.dto.UserRequestDto;
+import com.skillplay.security.JWTHelper;
+import com.skillplay.security.UserDetailService;
 import com.skillplay.service.AuthService;
 import com.skillplay.utils.Constants;
 import com.skillplay.utils.GlobalResponse;
@@ -11,6 +12,8 @@ import com.skillplay.validation.UserValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.*;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,6 +24,9 @@ public class AuthController {
 
     private final AuthService authService;
     private final UserValidator userValidator;
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailService userDetailService;
+    private final JWTHelper jwtHelper;
 
 
     @GetMapping("test")
@@ -29,8 +35,41 @@ public class AuthController {
         return GlobalResponse.builder().msg("test success..").status(AppConstants.SUCCESS).build();
     }
 
+
+    @PostMapping("/sign-in")
+    private ResponseEntity<GlobalResponse> signInUser(@RequestParam("email") String email, @RequestParam("password") String password){
+
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+        } catch (LockedException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Account is locked").status(AppConstants.ACCOUNT_LOCKED).build());
+        } catch (DisabledException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Account is disabled").status(AppConstants.ACCOUNT_DISABLED).build());
+        } catch (CredentialsExpiredException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Credentials have expired").status(AppConstants.CREDENTIALS_EXPIRED).build());
+        } catch (AccountExpiredException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Account has expired").status(AppConstants.ACCOUNT_EXPIRED).build());
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Invalid email or password").status(AppConstants.INVALID_CREDENTIALS).build());
+        }
+
+
+        final UserDetails userDetails = userDetailService.loadUserByUsername(email);
+        String token = jwtHelper.generateToken(userDetails);
+
+        GlobalResponse response = authService.signInUser(email, password, token);
+        return ResponseEntity.ok(response);
+    }
+
+
     @PostMapping({"sign-up","resend-otp"})
     private ResponseEntity<GlobalResponse> createUser(@RequestBody UserRequestDto userRequestDto ){
+
+        if(!userValidator.isValidUsername(userRequestDto.getUsername()))
+            return ResponseEntity.ok(GlobalResponse.builder().msg("Invalid Username, Username should only contain A-Z a-z _ and .").status(AppConstants.INVALID_USERNAME).build());
+
+        if(!userValidator.isValidEmail(userRequestDto.getEmail()))
+            ResponseEntity.ok(GlobalResponse.builder().msg("Invalid Email Address").status(AppConstants.INVALID_EMAIL).build());
 
         if(!OtpRetryMechanism.isRetryAvailable(userRequestDto.getEmail(), AppConstants.PURPOSE_SIGN_UP_OTP))
             return ResponseEntity.ok(GlobalResponse.builder().msg(Constants.otpLimitReachedWarning).status(AppConstants.LIMIT_EXCEEDED).build());
@@ -47,14 +86,6 @@ public class AuthController {
     @PostMapping("verify")
     private ResponseEntity<GlobalResponse> verifyAndSaveUser(@RequestParam("clientID") String clientID, @RequestParam("otp") String otp){
         return ResponseEntity.ok(authService.verifyAndSaveUser(clientID, otp));
-    }
-
-    @PostMapping("sign-in")
-    private ResponseEntity<GlobalResponse> signInUser(@RequestParam("email") String email, @RequestParam("password") String password){
-        if(!userValidator.checkUserExistByEmail(email))
-            return ResponseEntity.ok(GlobalResponse.builder().msg("Oops! Account not found. Try creating a new account").status(AppConstants.USER_NOT_FOUND).build());
-
-        return ResponseEntity.ok(authService.signInUser(email, password));
     }
 
     @PostMapping({"reset-password-request", "resend-password-otp"})
